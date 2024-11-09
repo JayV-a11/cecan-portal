@@ -94,7 +94,7 @@ const PacientesTable = () => {
         const { refreshToken } = JSON.parse(userCredentials);
         try {
             const response = await axios.get(
-                `http://localhost:8080/paciente?page=${page}&limit=${rowsPerPage}${filters ? `&fields=${JSON.stringify(filters)}` : ''}`,
+                `https://cecan-api.onrender.com/paciente?page=${page}&limit=${rowsPerPage}${filters ? `&fields=${JSON.stringify(filters)}` : ''}`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ const PacientesTable = () => {
         toast.promise(
             async () => {
                 const link = document.createElement('a');
-                link.href = `http://localhost:8080/exportar?page=${page}&limit=${rowsPerPage}${filters ? `&fields=${JSON.stringify(filters)}` : ''}`;
+                link.href = `https://cecan-api.onrender.com/exportar?page=${page}&limit=${rowsPerPage}${filters ? `&fields=${JSON.stringify(filters)}` : ''}`;
                 link.target = '_blank';
                 link.download = '';
                 link.click();
@@ -146,7 +146,7 @@ const PacientesTable = () => {
             async () => {
                 await axios
                     .get(
-                        `http://localhost:8080/file?id=${id}${status === 'ASSINADO' ? '&assinado=true' : ''}`,
+                        `https://cecan-api.onrender.com/file?id=${id}${status === 'ASSINADO' ? '&assinado=true' : ''}`,
                         {
                             responseType: 'blob',
                         }

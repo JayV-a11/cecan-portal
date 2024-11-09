@@ -235,7 +235,7 @@ export default function Stepper() {
 
         try {
             const response = await axios.post(
-                'http://localhost:8080/file',
+                'https://cecan-api.onrender.com/file',
                 fileFormData,
                 {
                     headers: {
@@ -342,7 +342,7 @@ export default function Stepper() {
         }
 
         await axios
-            .get(`http://localhost:8080/file?id=${id}`, {
+            .get(`https://cecan-api.onrender.com/file?id=${id}`, {
                 responseType: 'blob',
             })
             .then((response) => {
@@ -408,7 +408,7 @@ export default function Stepper() {
         toast.promise(
             async () => {
                 await axios
-                    .post('http://localhost:8080/file', fileFormData, {
+                    .post('https://cecan-api.onrender.com/file', fileFormData, {
                         headers: {
                             'Content-Type': 'multipart/form-data',
                         },
@@ -464,7 +464,7 @@ export default function Stepper() {
             if (!search) setInvalidId(true);
 
             const response = await axios.get(
-                `http://localhost:8080/cadastro/${search}`
+                `https://cecan-api.onrender.com/cadastro/${search}`
             );
 
             if (response.status === 200) {

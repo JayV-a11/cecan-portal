@@ -28,7 +28,7 @@ const index = () => {
             setLoading(true);
             const data = { login, password };
             await axios
-                .post('http://localhost:8080/login', data)
+                .post('https://cecan-api.onrender.com/login', data)
                 .then((res) =>
                     localStorage.setItem(
                         'USER_CREDENTIALS',

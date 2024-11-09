@@ -21,14 +21,17 @@ const useSalvarPaciente = () => {
                 throw new Error('Token de autenticação não encontrado');
             }
 
-            const response = await fetch('http://localhost:8080/paciente', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(data),
-            });
+            const response = await fetch(
+                'https://cecan-api.onrender.com/paciente',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
 
             if (!response.ok) {
                 throw new Error(

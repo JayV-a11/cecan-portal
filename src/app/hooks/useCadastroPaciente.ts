@@ -44,7 +44,7 @@ const useCadastroPaciente = () => {
 
         try {
             const response = await axios.post(
-                'http://localhost:8080/cadastro',
+                'https://cecan-api.onrender.com/cadastro',
                 {
                     nome_paciente: nomePaciente,
                     status,
@@ -99,7 +99,7 @@ const useCadastroPaciente = () => {
 
         try {
             const response = await axios.patch(
-                'http://localhost:8080/cadastro',
+                'https://cecan-api.onrender.com/cadastro',
                 {
                     id,
                     status,
