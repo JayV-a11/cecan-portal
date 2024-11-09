@@ -42,20 +42,20 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
-    const [dadosForm, setDadosForm] = React.useState<DadosForm>({});
+    const [dadosForm, setDadosForm] = React.useState<DadosForm>();
     const [filiacaoForm, setFiliacaoForm] = React.useState([]);
-    const [enderecoForm, setEnderecoForm] = React.useState<EnderecoForm>({});
-    const [contatoForm, setContatoForm] = React.useState<ContatoForm>({});
+    const [enderecoForm, setEnderecoForm] = React.useState<EnderecoForm>();
+    const [contatoForm, setContatoForm] = React.useState<ContatoForm>();
     const [perfilPessoalForm, setPerfilPessoalForm] =
-        React.useState<PerfilPessoalForm>({});
-    const [quadroClinico, setQuadroClinico] = React.useState<QuadroClinicoForm>(
-        {}
-    );
-    const [condicao, setCondicao] = React.useState<CondicaoForm>({});
-    const [atividade, setAtividade] = React.useState<AtividadeForm>({});
+        React.useState<PerfilPessoalForm>();
+    const [quadroClinico, setQuadroClinico] =
+        React.useState<QuadroClinicoForm>();
+    const [condicao, setCondicao] = React.useState<CondicaoForm>();
+    const [atividade, setAtividade] = React.useState<AtividadeForm>();
     const [invalidId, setInvalidId] = React.useState(false);
     const [data, setData] = React.useState();
     const [status, setStatus] = React.useState();
+    const [selectedDoc, setSelectedDoc] = React.useState();
     const { salvarPaciente } = useSalvarPaciente();
     const { atualizaCadastrarPaciente } = useCadastroPaciente();
 
@@ -187,12 +187,12 @@ export default function HorizontalLinearStepper() {
 
             if (section.label === 'Filiação') {
                 if (Array.isArray(section.data) && section.data?.length > 0)
-                    section.data.forEach((filiacao) => {
+                    section.data.forEach((filiacao: any) => {
                         addText(
                             `Nome: ${filiacao.nome}, Genêro: ${filiacao.genero}`
                         );
                     });
-            } else
+            } else if (section.data)
                 Object.entries(section.data).forEach(([key, value]) => {
                     if (key === 'composicaoFamiliar') {
                         Array.isArray(value) &&
@@ -271,50 +271,50 @@ export default function HorizontalLinearStepper() {
                 }
                 const data = {
                     paciente: {
-                        nome: dadosForm.nome ?? '-',
-                        rg: dadosForm.rg ?? '-',
-                        cpf: dadosForm.cpf ?? '-',
-                        nascimento: dadosForm.dataNascimento ?? '-',
-                        sus: dadosForm.cartaoSus ?? '-',
-                        convenio: dadosForm.convenio === 'sim',
-                        estado_civil: perfilPessoalForm.estadoCivil ?? '-',
-                        escolaridade: perfilPessoalForm.escolaridade ?? '-',
-                        contato: contatoForm.celular ?? '-',
-                        atividade: atividade.interesseAtividades ?? '-',
+                        nome: dadosForm?.nome ?? '-',
+                        rg: dadosForm?.rg ?? '-',
+                        cpf: dadosForm?.cpf ?? '-',
+                        nascimento: dadosForm?.dataNascimento ?? '-',
+                        sus: dadosForm?.cartaoSus ?? '-',
+                        convenio: dadosForm?.convenio === 'sim',
+                        estado_civil: perfilPessoalForm?.estadoCivil ?? '-',
+                        escolaridade: perfilPessoalForm?.escolaridade ?? '-',
+                        contato: contatoForm?.celular ?? '-',
+                        atividade: atividade?.interesseAtividades ?? '-',
                         codigo: id,
                     },
                     endereco: {
-                        cep: enderecoForm.cep ?? '-',
-                        rua: enderecoForm.rua ?? '-',
-                        numero: enderecoForm.numero ?? '-',
-                        cidade: enderecoForm.cidade ?? '-',
-                        bairro: enderecoForm.bairro ?? '-',
-                        estado: enderecoForm.estado ?? '-',
-                        complemento: enderecoForm.estado ?? '-',
+                        cep: enderecoForm?.cep ?? '-',
+                        rua: enderecoForm?.rua ?? '-',
+                        numero: enderecoForm?.numero ?? '-',
+                        cidade: enderecoForm?.cidade ?? '-',
+                        bairro: enderecoForm?.bairro ?? '-',
+                        estado: enderecoForm?.estado ?? '-',
+                        complemento: enderecoForm?.estado ?? '-',
                     },
                     quadroClinico: {
-                        recidiva: quadroClinico.recidiva === 'sim',
-                        metastase: quadroClinico.metastase === 'sim',
+                        recidiva: quadroClinico?.recidiva === 'sim',
+                        metastase: quadroClinico?.metastase === 'sim',
                         realizou_cirurgia:
-                            quadroClinico.realizouCirurgia === 'sim',
+                            quadroClinico?.realizouCirurgia === 'sim',
                         realiza_exames_prevencao:
-                            quadroClinico.recidiva === 'sim',
+                            quadroClinico?.recidiva === 'sim',
                         realiza_tratamento_outras_doencas:
-                            quadroClinico.tratamentoOutraDoenca === 'sim',
+                            quadroClinico?.tratamentoOutraDoenca === 'sim',
                         local_tratamento:
-                            quadroClinico.localTratamentoOutraDoenca ?? '-',
+                            quadroClinico?.localTratamentoOutraDoenca ?? '-',
                         medico_responsavel:
-                            quadroClinico.medicoResponsavel ?? '-',
-                        data_diagnostico: quadroClinico.dataDiagnostico
-                            ? new Date(quadroClinico.dataDiagnostico)
+                            quadroClinico?.medicoResponsavel ?? '-',
+                        data_diagnostico: quadroClinico?.dataDiagnostico
+                            ? new Date(quadroClinico?.dataDiagnostico)
                             : new Date(),
                     },
                     sitSocieconomica: {
-                        recebe_beneficio: condicao.recebeBeneficio === 'sim',
-                        aposentado: condicao.aposentado === 'sim',
-                        desempregado: condicao.desempregado === 'sim',
-                        moradia: condicao.moradia ?? '-',
-                        renda_per_capita: condicao.rendaPerCapita ?? '-',
+                        recebe_beneficio: condicao?.recebeBeneficio === 'sim',
+                        aposentado: condicao?.aposentado === 'sim',
+                        desempregado: condicao?.desempregado === 'sim',
+                        moradia: condicao?.moradia ?? '-',
+                        renda_per_capita: condicao?.rendaPerCapita ?? '-',
                     },
                 };
 
@@ -369,12 +369,19 @@ export default function HorizontalLinearStepper() {
         input.onchange = async () => {
             if (!input.files) return;
             const file = input.files[0];
-            setData(file as any);
+            setSelectedDoc(file as any);
         };
         input.click();
     };
 
-    const getFileExtension = (mimeType: any) => {
+    const getFileExtension = (
+        mimeType: keyof {
+            'image/jpeg': string;
+            'image/png': string;
+            'image/jpg': string;
+            'application/pdf': string;
+        }
+    ) => {
         const mimeToExtension = {
             'image/jpeg': 'jpg',
             'image/png': 'png',
@@ -391,11 +398,14 @@ export default function HorizontalLinearStepper() {
             setInvalidId(true);
             return;
         }
+
+        if (!selectedDoc) return;
+
         const fileFormData = new FormData();
         fileFormData.append(
             'filename',
-            data,
-            `dados_${id}_assinado.${getFileExtension(data.type)}`
+            selectedDoc,
+            `dados_${id}_assinado.${getFileExtension(selectedDoc.type)}`
         );
         toast.promise(
             async () => {
@@ -412,7 +422,7 @@ export default function HorizontalLinearStepper() {
                                 'Arquivo enviado com sucesso! Entre em contato com a equipe da CECAN'
                             );
                             router.refresh();
-                        } else toast.warning(error?.message ?? error);
+                        }
                     })
                     .catch((err) =>
                         toast.error(
@@ -567,7 +577,7 @@ export default function HorizontalLinearStepper() {
                                     Baixar documento não assinado
                                 </Button>
                                 {data && (
-                                    <span>{`Arquivo selecionado: ${data.name}`}</span>
+                                    <span>{`Arquivo selecionado: ${(data as { name: string }).name}`}</span>
                                 )}
                                 <Button
                                     variant="contained"
@@ -575,14 +585,14 @@ export default function HorizontalLinearStepper() {
                                     onClick={selectDocument}
                                     sx={{ mr: 1 }}
                                 >
-                                    {data
+                                    {selectedDoc
                                         ? 'Selecionar outro arquivo'
                                         : 'Selecionar doumento assinado'}
                                 </Button>
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    disabled={!data}
+                                    disabled={!selectedDoc}
                                     onClick={sendDocument}
                                     sx={{ mr: 1 }}
                                 >
