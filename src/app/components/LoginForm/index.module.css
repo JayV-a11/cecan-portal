@@ -1,0 +1,21 @@
+.box {
+    padding: 35px 67px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 426px;
+    background-color: #f4f4f457;
+    border-radius: 16px;
+}
+
+.customField,
+.button {
+    width: 100%;
+}
+
+.button {
+    height: 45px;
+    background-color: #ffff !important;
+    color: #2148c0 !important;
+}
