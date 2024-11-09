@@ -1,14 +1,13 @@
-'use client';
-import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Stepper from './components/Stepper';
 import './index.css';
 function page() {
-    const searchParams = useSearchParams();
-
     return (
-        <div className="mobileCadastro">
-            <Stepper searchParams={searchParams} />
-        </div>
+        <Suspense>
+            <div className="mobileCadastro">
+                <Stepper />
+            </div>
+        </Suspense>
     );
 }
 

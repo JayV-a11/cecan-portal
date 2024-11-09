@@ -13,7 +13,7 @@ import {
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import * as React from 'react';
 import { toast } from 'react-toastify';
@@ -40,7 +40,7 @@ const steps = [
     'Finalizar',
 ];
 
-export default function Stepper({ searchParams }: any) {
+export default function Stepper() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [dadosForm, setDadosForm] = React.useState<DadosForm>();
     const [filiacaoForm, setFiliacaoForm] = React.useState([]);
@@ -57,7 +57,7 @@ export default function Stepper({ searchParams }: any) {
     const [selectedDoc, setSelectedDoc] = React.useState();
     const { salvarPaciente } = useSalvarPaciente();
     const { atualizaCadastrarPaciente } = useCadastroPaciente();
-
+    const searchParams = useSearchParams();
     const router = useRouter();
 
     const generatePDF = async () => {
