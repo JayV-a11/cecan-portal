@@ -13,7 +13,7 @@ import {
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import * as React from 'react';
 import { toast } from 'react-toastify';
@@ -40,7 +40,7 @@ const steps = [
     'Finalizar',
 ];
 
-export default function HorizontalLinearStepper() {
+export default function Stepper({ searchParams }: any) {
     const [activeStep, setActiveStep] = React.useState(0);
     const [dadosForm, setDadosForm] = React.useState<DadosForm>();
     const [filiacaoForm, setFiliacaoForm] = React.useState([]);
@@ -53,14 +53,12 @@ export default function HorizontalLinearStepper() {
     const [condicao, setCondicao] = React.useState<CondicaoForm>();
     const [atividade, setAtividade] = React.useState<AtividadeForm>();
     const [invalidId, setInvalidId] = React.useState(false);
-    const [data, setData] = React.useState();
     const [status, setStatus] = React.useState();
     const [selectedDoc, setSelectedDoc] = React.useState();
     const { salvarPaciente } = useSalvarPaciente();
     const { atualizaCadastrarPaciente } = useCadastroPaciente();
 
     const router = useRouter();
-    const searchParams = useSearchParams();
 
     const generatePDF = async () => {
         const pdfDoc = await PDFDocument.create();
@@ -576,8 +574,8 @@ export default function HorizontalLinearStepper() {
                                 >
                                     Baixar documento não assinado
                                 </Button>
-                                {data && (
-                                    <span>{`Arquivo selecionado: ${(data as { name: string }).name}`}</span>
+                                {selectedDoc && (
+                                    <span>{`Arquivo selecionado: ${(selectedDoc as { name: string }).name}`}</span>
                                 )}
                                 <Button
                                     variant="contained"
