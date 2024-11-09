@@ -1,65 +1,51 @@
-export type DadosForm =
-    | {
-          convenio: string;
-          cartaoSus: string;
-          dataNascimento: string;
-          cpf: string;
-          rg: string;
-          nome: string;
-      }
-    | {};
+export type DadosForm = {
+    convenio: string;
+    cartaoSus: string;
+    dataNascimento: string;
+    cpf: string;
+    rg: string;
+    nome: string;
+};
 
-export type PerfilPessoalForm =
-    | {
-          escolaridade: string;
-          estadoCivil: string;
-      }
-    | {};
+export type PerfilPessoalForm = {
+    escolaridade: string;
+    estadoCivil: string;
+};
 
-export type ContatoForm =
-    | {
-          celular: string;
-      }
-    | {};
+export type ContatoForm = {
+    celular: string;
+};
 
-export type EnderecoForm =
-    | {
-          bairro: string;
-          estado: string;
-          cidade: string;
-          numero: string;
-          rua: string;
-          cep: string;
-      }
-    | {};
+export type EnderecoForm = {
+    bairro: string;
+    estado: string;
+    cidade: string;
+    numero: string;
+    rua: string;
+    cep: string;
+};
 
-export type AtividadeForm =
-    | {
-          interesseAtividades: string;
-      }
-    | {};
+export type AtividadeForm = {
+    interesseAtividades: string;
+};
 
-export type QuadroClinicoForm =
-    | {
-          dataDiagnostico: string | number | Date;
-          medicoResponsavel: string;
-          localTratamentoOutraDoenca: string;
-          tratamentoOutraDoenca: string;
-          realizouCirurgia: string;
-          metastase: string;
-          recidiva: string;
-      }
-    | {};
+export type QuadroClinicoForm = {
+    dataDiagnostico: string | number | Date;
+    medicoResponsavel: string;
+    localTratamentoOutraDoenca: string;
+    tratamentoOutraDoenca: string;
+    realizouCirurgia: string;
+    metastase: string;
+    recidiva: string;
+};
 
-export type CondicaoForm =
-    | {
-          rendaPerCapita: string;
-          moradia: string;
-          desempregado: string;
-          aposentado: string;
-          recebeBeneficio: string;
-      }
-    | {};
+export type CondicaoForm = {
+    rendaPerCapita: string;
+    moradia: string;
+    desempregado: string;
+    aposentado: string;
+    recebeBeneficio: string;
+};
 
 export type PacienteData = {
     paciente: {

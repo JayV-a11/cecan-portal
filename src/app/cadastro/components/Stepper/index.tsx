@@ -195,11 +195,12 @@ export default function HorizontalLinearStepper() {
             } else
                 Object.entries(section.data).forEach(([key, value]) => {
                     if (key === 'composicaoFamiliar') {
-                        value.forEach((comp) => {
-                            addText(
-                                `vinculo: ${comp.vinculo}, data de nascimento: ${comp.dataNascimento}, escolaridade: ${comp.escolaridade}, ocupação: ${comp.ocupacao}, renda: ${comp.renda}, vinculo: ${comp.vinculo}`
-                            );
-                        });
+                        Array.isArray(value) &&
+                            value.forEach((comp) => {
+                                addText(
+                                    `vinculo: ${comp.vinculo}, data de nascimento: ${comp.dataNascimento}, escolaridade: ${comp.escolaridade}, ocupação: ${comp.ocupacao}, renda: ${comp.renda}, vinculo: ${comp.vinculo}`
+                                );
+                            });
                     } else {
                         addText(`${key}: ${value}`);
                     }
@@ -366,6 +367,7 @@ export default function HorizontalLinearStepper() {
         input.type = 'file';
         input.accept = 'image/*, .pdf'; // Aceita todos os tipos de imagem e arquivos PDF
         input.onchange = async () => {
+            if (!input.files) return;
             const file = input.files[0];
             setData(file as any);
         };
