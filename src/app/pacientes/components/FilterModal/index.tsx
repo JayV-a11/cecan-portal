@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-const FilterModal = ({ open, onClose, onApplyFilter }) => {
+const FilterModal = ({ open, onClose, onApplyFilter }: any) => {
     const [filters, setFilters] = useState({
         status: '',
         Paciente: {
@@ -51,11 +51,11 @@ const FilterModal = ({ open, onClose, onApplyFilter }) => {
             moradia: '',
             renda_per_capita: '',
         },
-    });
+    } as any);
 
-    const handleChange = (e, category, field) => {
+    const handleChange = (e: any, category: any, field: any) => {
         const { value } = e.target;
-        setFilters((prevFilters) => ({
+        setFilters((prevFilters: any) => ({
             ...prevFilters,
             [category]: {
                 ...prevFilters[category],
@@ -196,13 +196,13 @@ const FilterModal = ({ open, onClose, onApplyFilter }) => {
                 ))}
 
                 {/* SitSocieconomica Filters */}
-                {['moradia', 'renda_per_capita'].map((field) => (
+                {['moradia', 'renda_per_capita'].map((field: any) => (
                     <TextField
                         key={field}
                         label={
                             field
                                 .replace(/_/g, ' ') // Substitui underscores por espaços
-                                .replace(/^\w/, (c) => c.toUpperCase()) // Coloca a primeira letra em maiúscula
+                                .replace(/^\w/, (c: any) => c.toUpperCase()) // Coloca a primeira letra em maiúscula
                         }
                         value={filters.SitSocieconomica[field]}
                         onChange={(e) =>

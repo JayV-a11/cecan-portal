@@ -77,7 +77,7 @@ const PacientesTable = () => {
     const [openSettingsModal, setOpenSettingsModal] = useState(false);
     const [showInactvateConfirmation, setShowInactivationConfirmation] =
         useState({ show: false, id: null });
-    const [filters, setFilters] = useState();
+    const [filters, setFilters] = useState<any>();
     const [key, setKey] = useState(Math.random());
     const { atualizaCadastrarPaciente } = useCadastroPaciente();
 
@@ -109,7 +109,7 @@ const PacientesTable = () => {
                 const result = response.status === 200 ? response.data : [];
                 setData(result);
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.status === 401) {
                 localStorage.removeItem('USER_CREDENTIALS');
                 router.push('/');
@@ -141,7 +141,7 @@ const PacientesTable = () => {
         );
     };
 
-    const handleDownloadPDF = async (id, status) => {
+    const handleDownloadPDF = async (id: any, status: any) => {
         toast.promise(
             async () => {
                 await axios
@@ -176,10 +176,7 @@ const PacientesTable = () => {
         );
     };
 
-    const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-        newPage: number
-    ) => {
+    const handleChangePage = (newPage: any) => {
         setPage(newPage);
     };
 
@@ -245,13 +242,13 @@ const PacientesTable = () => {
         setOpenFilterModal(false);
     };
 
-    const handleApplyFilter = (newFilters) => {
+    const handleApplyFilter = (newFilters: any) => {
         setFilters(newFilters);
         setOpenFilterModal(false);
     };
 
     const handleInactivate = () => {
-        const id = showInactvateConfirmation.id;
+        const id = showInactvateConfirmation.id as any;
         toast.promise(
             async () => {
                 await atualizaCadastrarPaciente(id, 5);
@@ -266,12 +263,12 @@ const PacientesTable = () => {
         fetchData();
     };
 
-    const handleShowInactivateModal = (id: string) => {
+    const handleShowInactivateModal = (id: any) => {
         setShowInactivationConfirmation({ show: true, id });
         fetchData();
     };
 
-    const handleViewCode = (codigo: string) => {
+    const handleViewCode = (codigo: any) => {
         setSelectedCode(codigo);
         setOpenCodeModal(true);
     };
@@ -281,7 +278,7 @@ const PacientesTable = () => {
         setSelectedCode(null);
     };
 
-    const renderOptions = (status: string, cadastro: Cadastro) => {
+    const renderOptions = (status: string, cadastro: any) => {
         return (
             <Box display="flex" gap="8px">
                 {status === 'ASSINADO' && (
@@ -505,7 +502,7 @@ const PacientesTable = () => {
                     />
                     <Button
                         onClick={() =>
-                            navigator.clipboard.writeText(selectedCode)
+                            navigator.clipboard.writeText(selectedCode as any)
                         }
                         variant="contained"
                     >

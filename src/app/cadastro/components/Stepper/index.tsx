@@ -400,12 +400,12 @@ export default function HorizontalLinearStepper() {
         }
 
         if (!selectedDoc) return;
-
+        const docfile = selectedDoc as any;
         const fileFormData = new FormData();
         fileFormData.append(
             'filename',
             selectedDoc,
-            `dados_${id}_assinado.${getFileExtension(selectedDoc.type)}`
+            `dados_${id}_assinado.${getFileExtension(docfile.type)}`
         );
         toast.promise(
             async () => {
