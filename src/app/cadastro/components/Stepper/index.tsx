@@ -186,7 +186,7 @@ export default function HorizontalLinearStepper() {
             checkPageLimit();
 
             if (section.label === 'Filiação') {
-                if (section.data.length > 0)
+                if (section.data?.length > 0)
                     section.data.forEach((filiacao) => {
                         addText(
                             `Nome: ${filiacao.nome}, Genêro: ${filiacao.genero}`
