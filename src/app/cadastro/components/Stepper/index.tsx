@@ -41,7 +41,7 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
-    const [dadosForm, setDadosForm] = React.useState({});
+    const [dadosForm, setDadosForm] = React.useState();
     const [filiacaoForm, setFiliacaoForm] = React.useState([]);
     const [enderecoForm, setEnderecoForm] = React.useState<EnderecoForm>({});
     const [contatoForm, setContatoForm] = React.useState<ContatoForm>({});
