@@ -154,8 +154,9 @@ const FilterModal = ({ open, onClose, onApplyFilter }) => {
                     <TextField
                         key={field}
                         label={
-                            field.charAt(0).toUpperCase() +
-                            field.replace('_', ' ')
+                            field
+                                .replace(/_/g, ' ') // Substitui underscores por espaços
+                                .replace(/^\w/, (c) => c.toUpperCase()) // Coloca a primeira letra em maiúscula
                         }
                         value={filters.QuadroClinico[field]}
                         onChange={(e) =>
@@ -176,8 +177,9 @@ const FilterModal = ({ open, onClose, onApplyFilter }) => {
                     <TextField
                         key={field}
                         label={
-                            field.charAt(0).toUpperCase() +
-                            field.replace('_', ' ')
+                            field
+                                .replace(/_/g, ' ') // Substitui underscores por espaços
+                                .replace(/^\w/, (c) => c.toUpperCase()) // Coloca a primeira letra em maiúscula
                         }
                         value={filters.QuadroClinico[field]}
                         onChange={(e) =>
@@ -198,8 +200,9 @@ const FilterModal = ({ open, onClose, onApplyFilter }) => {
                     <TextField
                         key={field}
                         label={
-                            field.charAt(0).toUpperCase() +
-                            field.replace('_', ' ')
+                            field
+                                .replace(/_/g, ' ') // Substitui underscores por espaços
+                                .replace(/^\w/, (c) => c.toUpperCase()) // Coloca a primeira letra em maiúscula
                         }
                         value={filters.SitSocieconomica[field]}
                         onChange={(e) =>
@@ -215,8 +218,9 @@ const FilterModal = ({ open, onClose, onApplyFilter }) => {
                         <TextField
                             key={field}
                             label={
-                                field.charAt(0).toUpperCase() +
-                                field.replace('_', ' ')
+                                field
+                                    .replace(/_/g, ' ') // Substitui underscores por espaços
+                                    .replace(/^\w/, (c) => c.toUpperCase()) // Coloca a primeira letra em maiúscula
                             }
                             value={filters.SitSocieconomica[field]}
                             onChange={(e) =>
