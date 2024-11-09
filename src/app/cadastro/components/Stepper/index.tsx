@@ -41,7 +41,7 @@ const steps = [
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
-    const [dadosForm, setDadosForm] = React.useState();
+    const [dadosForm, setDadosForm] = React.useState({});
     const [filiacaoForm, setFiliacaoForm] = React.useState([]);
     const [enderecoForm, setEnderecoForm] = React.useState<EnderecoForm>({});
     const [contatoForm, setContatoForm] = React.useState<ContatoForm>({});
@@ -185,7 +185,7 @@ export default function HorizontalLinearStepper() {
             checkPageLimit();
 
             if (section.label === 'Filiação') {
-                if (section.data?.length > 0)
+                if (section.data && section.data?.length > 0)
                     section.data.forEach((filiacao) => {
                         addText(
                             `Nome: ${filiacao.nome}, Genêro: ${filiacao.genero}`
