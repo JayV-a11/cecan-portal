@@ -8,7 +8,6 @@
 .mobileCadastro .footer {
     display: flex;
     width: -webkit-fill-available;
-    bottom: 10px;
     position: absolute;
     padding: 16px;
     width: 100vw;

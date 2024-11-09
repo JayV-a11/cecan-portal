@@ -50,7 +50,9 @@ function Index() {
     };
 
     const handleCopyLink = () => {
-        navigator.clipboard.writeText(linkCadastro);
+        navigator.clipboard.writeText(
+            `https://cecan-portal.vercel.app${linkCadastro}`
+        );
     };
 
     const handleLogoff = () => {
@@ -101,7 +103,7 @@ function Index() {
                     </p>
                     <TextField
                         fullWidth
-                        value={linkCadastro}
+                        value={`https://cecan-portal.vercel.app${linkCadastro}`}
                         InputProps={{
                             readOnly: true,
                         }}

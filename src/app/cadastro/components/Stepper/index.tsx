@@ -258,80 +258,79 @@ export default function Stepper() {
     };
 
     const handleSave = async () => {
-        toast.promise(
-            async () => {
-                const id = searchParams.get('id');
-                if (!id) {
-                    toast.error(
-                        'Não foi possivel indentificar o cadastro do cliente'
-                    );
-                    return;
-                }
-                const data = {
-                    paciente: {
-                        nome: dadosForm?.nome ?? '-',
-                        rg: dadosForm?.rg ?? '-',
-                        cpf: dadosForm?.cpf ?? '-',
-                        nascimento: dadosForm?.dataNascimento ?? '-',
-                        sus: dadosForm?.cartaoSus ?? '-',
-                        convenio: dadosForm?.convenio === 'sim',
-                        estado_civil: perfilPessoalForm?.estadoCivil ?? '-',
-                        escolaridade: perfilPessoalForm?.escolaridade ?? '-',
-                        contato: contatoForm?.celular ?? '-',
-                        atividade: atividade?.interesseAtividades ?? '-',
-                        codigo: id,
-                    },
-                    endereco: {
-                        cep: enderecoForm?.cep ?? '-',
-                        rua: enderecoForm?.rua ?? '-',
-                        numero: enderecoForm?.numero ?? '-',
-                        cidade: enderecoForm?.cidade ?? '-',
-                        bairro: enderecoForm?.bairro ?? '-',
-                        estado: enderecoForm?.estado ?? '-',
-                        complemento: enderecoForm?.estado ?? '-',
-                    },
-                    quadroClinico: {
-                        recidiva: quadroClinico?.recidiva === 'sim',
-                        metastase: quadroClinico?.metastase === 'sim',
-                        realizou_cirurgia:
-                            quadroClinico?.realizouCirurgia === 'sim',
-                        realiza_exames_prevencao:
-                            quadroClinico?.recidiva === 'sim',
-                        realiza_tratamento_outras_doencas:
-                            quadroClinico?.tratamentoOutraDoenca === 'sim',
-                        local_tratamento:
-                            quadroClinico?.localTratamentoOutraDoenca ?? '-',
-                        medico_responsavel:
-                            quadroClinico?.medicoResponsavel ?? '-',
-                        data_diagnostico: quadroClinico?.dataDiagnostico
-                            ? new Date(quadroClinico?.dataDiagnostico)
-                            : new Date(),
-                    },
-                    sitSocieconomica: {
-                        recebe_beneficio: condicao?.recebeBeneficio === 'sim',
-                        aposentado: condicao?.aposentado === 'sim',
-                        desempregado: condicao?.desempregado === 'sim',
-                        moradia: condicao?.moradia ?? '-',
-                        renda_per_capita: condicao?.rendaPerCapita ?? '-',
-                    },
-                };
-
-                const search = searchParams.get('id');
-                if (!search) {
-                    setInvalidId(true);
-                    return;
-                }
-                await salvarPaciente(data as any);
-                await atualizaCadastrarPaciente(search, 3);
-                await generatePDF();
-                router.refresh();
+        const id = searchParams.get('id');
+        if (!id) {
+            toast.error('Não foi possivel indentificar o cadastro do cliente');
+            return;
+        }
+        const data = {
+            paciente: {
+                nome: dadosForm?.nome ?? '-',
+                rg: dadosForm?.rg ?? '-',
+                cpf: dadosForm?.cpf ?? '-',
+                nascimento: dadosForm?.dataNascimento ?? '-',
+                sus: dadosForm?.cartaoSus ?? '-',
+                convenio: dadosForm?.convenio === 'sim',
+                estado_civil: perfilPessoalForm?.estadoCivil ?? '-',
+                escolaridade: perfilPessoalForm?.escolaridade ?? '-',
+                contato: contatoForm?.celular ?? '-',
+                atividade: atividade?.interesseAtividades ?? '-',
+                codigo: id,
             },
-            {
-                error: 'Houve um erro ao salvar seus dados, tente novamente mais tarde',
-                success: 'Dados salvos com sucesso!',
-                pending: 'Seu documento está sendo gerado, aguarde um momento',
-            }
-        );
+            endereco: {
+                cep: enderecoForm?.cep ?? '-',
+                rua: enderecoForm?.rua ?? '-',
+                numero: enderecoForm?.numero ?? '-',
+                cidade: enderecoForm?.cidade ?? '-',
+                bairro: enderecoForm?.bairro ?? '-',
+                estado: enderecoForm?.estado ?? '-',
+                complemento: enderecoForm?.estado ?? '-',
+            },
+            quadroClinico: {
+                recidiva: quadroClinico?.recidiva === 'sim',
+                metastase: quadroClinico?.metastase === 'sim',
+                realizou_cirurgia: quadroClinico?.realizouCirurgia === 'sim',
+                realiza_exames_prevencao: quadroClinico?.recidiva === 'sim',
+                realiza_tratamento_outras_doencas:
+                    quadroClinico?.tratamentoOutraDoenca === 'sim',
+                local_tratamento:
+                    quadroClinico?.localTratamentoOutraDoenca ?? '-',
+                medico_responsavel: quadroClinico?.medicoResponsavel ?? '-',
+                data_diagnostico: quadroClinico?.dataDiagnostico
+                    ? new Date(quadroClinico?.dataDiagnostico)
+                    : new Date(),
+            },
+            sitSocieconomica: {
+                recebe_beneficio: condicao?.recebeBeneficio === 'sim',
+                aposentado: condicao?.aposentado === 'sim',
+                desempregado: condicao?.desempregado === 'sim',
+                moradia: condicao?.moradia ?? '-',
+                renda_per_capita: condicao?.rendaPerCapita ?? '-',
+            },
+        };
+
+        const search = searchParams.get('id');
+        if (!search) {
+            setInvalidId(true);
+            return;
+        }
+        await salvarPaciente(data as any).then(async () => {
+            await atualizaCadastrarPaciente(search, 3).then(async () =>
+                toast.promise(
+                    async () => {
+                        await generatePDF();
+                    },
+                    {
+                        error: 'Houve um erro ao salvar seus dados, tente novamente mais tarde',
+                        success: 'Dados salvos com sucesso!',
+                        pending:
+                            'Seu documento está sendo gerado, aguarde um momento',
+                    }
+                )
+            );
+        });
+
+        router.refresh();
     };
 
     const downloadDocument = async () => {
