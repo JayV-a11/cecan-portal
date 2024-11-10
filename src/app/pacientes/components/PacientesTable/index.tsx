@@ -37,7 +37,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import FilterModal from '../FilterModal';
-import './index.css';
+import './tabelas.css';
 interface Cadastro {
     id: string;
     nome_paciente: string;
@@ -285,7 +285,7 @@ const PacientesTable = () => {
                     <Tooltip title="Baixar Documento Assinado">
                         <IconButton
                             onClick={() =>
-                                handleDownloadPDF(cadastro?.codigo, status)
+                                handleDownloadPDF(cadastro?.id, status)
                             }
                         >
                             <FileDownloadIcon />
@@ -296,7 +296,7 @@ const PacientesTable = () => {
                     <Tooltip title="Baixar Documento">
                         <IconButton
                             onClick={() =>
-                                handleDownloadPDF(cadastro?.codigo, status)
+                                handleDownloadPDF(cadastro?.id, status)
                             }
                         >
                             <FileDownloadIcon />
@@ -308,7 +308,7 @@ const PacientesTable = () => {
                     <IconButton
                         onClick={() =>
                             handleViewCode(
-                                cadastro?.codigo || 'Código não disponível'
+                                cadastro?.id || 'Código não disponível'
                             )
                         }
                     >

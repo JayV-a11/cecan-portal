@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import Stepper from './components/Stepper';
-import './index.css';
+import './mobileCadastro.css';
 function page() {
     return (
         <Suspense>
