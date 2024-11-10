@@ -285,7 +285,10 @@ const PacientesTable = () => {
                     <Tooltip title="Baixar Documento Assinado">
                         <IconButton
                             onClick={() =>
-                                handleDownloadPDF(cadastro?.id, status)
+                                handleDownloadPDF(
+                                    cadastro?.codigo ?? cadastro.id,
+                                    status
+                                )
                             }
                         >
                             <FileDownloadIcon />
@@ -296,7 +299,10 @@ const PacientesTable = () => {
                     <Tooltip title="Baixar Documento">
                         <IconButton
                             onClick={() =>
-                                handleDownloadPDF(cadastro?.id, status)
+                                handleDownloadPDF(
+                                    cadastro?.codigo ?? cadastro.id,
+                                    status
+                                )
                             }
                         >
                             <FileDownloadIcon />
@@ -308,7 +314,8 @@ const PacientesTable = () => {
                     <IconButton
                         onClick={() =>
                             handleViewCode(
-                                cadastro?.id || 'Código não disponível'
+                                cadastro?.codigo ??
+                                    (cadastro.id || 'Código não disponível')
                             )
                         }
                     >
