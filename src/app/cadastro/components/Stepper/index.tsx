@@ -330,7 +330,7 @@ export default function Stepper() {
             );
         });
 
-        router.refresh();
+        // router.refresh();
     };
 
     const downloadDocument = async () => {
@@ -418,7 +418,7 @@ export default function Stepper() {
                             toast.success(
                                 'Arquivo enviado com sucesso! Entre em contato com a equipe da CECAN'
                             );
-                            router.refresh();
+                            // router.refresh();
                         }
                     })
                     .catch((err) =>
