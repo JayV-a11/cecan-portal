@@ -1,3 +1,4 @@
+@import './pacientes/components/PacientesTable/tabelas.css';
 html,
 body {
     height: 100vh;
