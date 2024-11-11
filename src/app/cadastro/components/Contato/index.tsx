@@ -16,16 +16,28 @@ const Contato: React.FC<ContatoProps> = ({ onChange, forms }) => {
     const [possuiConvenio, setPossuiConvenio] = useState(false);
     const [formData, setFormData] = useState(
         forms ?? {
-            telefoneProprio: '',
             telefoneFixo: '',
             celular: '',
-            whatsapp: '',
             telefoneContato: '',
             nomeContato: '',
             parentescoContato: '',
             convenio: '',
         }
     );
+
+    const telefoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
+
+    const handleCelularChange = (e: any) => {
+        let inputValue = e.target.value.replace(/\D/g, '');
+
+        if (inputValue.length > 2) {
+            inputValue = `(${inputValue.slice(0, 2)}) ${inputValue.slice(2)}`;
+        }
+        if (inputValue.length > 10) {
+            inputValue = `${inputValue.slice(0, 10)}-${inputValue.slice(10, 14)}`;
+        }
+        handleInputChange('celular', inputValue);
+    };
 
     const handleInputChange = (field: string, value: string) => {
         const updatedData = { ...formData, [field]: value };
@@ -40,21 +52,8 @@ const Contato: React.FC<ContatoProps> = ({ onChange, forms }) => {
         handleInputChange('convenio', event.target.checked ? '' : ''); // Limpa o campo se o convênio for desmarcado
     };
 
-    const telefoneRegex = /^[0-9-()]+$/;
-
     return (
         <Box display="flex" flexDirection="column" gap={2}>
-            {/* Divisão Telefone Próprio */}
-            <Typography variant="h6">Telefone Próprio</Typography>
-            <TextField
-                label="Telefone Próprio"
-                value={formData.telefoneProprio}
-                onChange={(e) =>
-                    handleInputChange('telefoneProprio', e.target.value)
-                }
-                inputProps={{ pattern: telefoneRegex.source }}
-                required
-            />
             <TextField
                 label="Telefone Fixo (opcional)"
                 value={formData.telefoneFixo}
@@ -64,19 +63,12 @@ const Contato: React.FC<ContatoProps> = ({ onChange, forms }) => {
                 inputProps={{ pattern: telefoneRegex.source }}
             />
             <TextField
-                label="Celular (opcional)"
+                label="Celular"
+                required
                 value={formData.celular}
-                onChange={(e) => handleInputChange('celular', e.target.value)}
+                onChange={handleCelularChange}
                 inputProps={{ pattern: telefoneRegex.source }}
             />
-            <TextField
-                label="WhatsApp (opcional)"
-                value={formData.whatsapp}
-                onChange={(e) => handleInputChange('whatsapp', e.target.value)}
-                inputProps={{ pattern: telefoneRegex.source }}
-            />
-
-            {/* Divisão Telefone Contato */}
             <Typography variant="h6">Telefone Contato</Typography>
             <TextField
                 label="Telefone Contato"

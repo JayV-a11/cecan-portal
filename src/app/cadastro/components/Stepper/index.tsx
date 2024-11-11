@@ -371,6 +371,56 @@ export default function Stepper() {
         input.click();
     };
 
+    const validateStepFields = () => {
+        if (activeStep === 0) {
+            const form = dadosForm as any;
+            if (
+                !form?.nome ||
+                !form?.dataNascimento ||
+                !form?.rg ||
+                !form?.cpf ||
+                !form?.cartaoSus
+            )
+                return true;
+        }
+        if (activeStep === 2) {
+            const form = enderecoForm as any;
+            if (
+                !form?.cep ||
+                !form?.rua ||
+                !form?.numero ||
+                !form?.bairro ||
+                !form?.cidade ||
+                !form?.estado
+            )
+                return true;
+        }
+        if (activeStep === 3) {
+            const form = contatoForm as any;
+            if (
+                !form?.celular ||
+                !form?.numero ||
+                !form?.bairro ||
+                !form?.cidade ||
+                !form?.estado
+            )
+                return true;
+        }
+        if (activeStep === 5) {
+            const form = quadroClinico as any;
+            if (
+                !form?.diagnostico ||
+                !form?.dataDiagnostico ||
+                !form?.tratamento ||
+                !form?.medicoResponsavel ||
+                !form?.localTratamento
+            )
+                return true;
+        }
+
+        return false;
+    };
+
     const getFileExtension = (
         mimeType: keyof {
             'image/jpeg': string;
@@ -618,20 +668,22 @@ export default function Stepper() {
                             Voltar
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() =>
-                                activeStep === steps.length - 1
-                                    ? handleSave()
-                                    : handleNext()
-                            }
-                            disabled={activeStep > steps.length - 1}
-                        >
-                            {activeStep === steps.length - 1
-                                ? 'Finalizar'
-                                : 'Próximo'}
-                        </Button>
+                        {activeStep <= steps.length - 1 && (
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() =>
+                                    activeStep === steps.length - 1
+                                        ? handleSave()
+                                        : handleNext()
+                                }
+                                disabled={validateStepFields()}
+                            >
+                                {activeStep === steps.length - 1
+                                    ? 'Finalizar'
+                                    : 'Próximo'}
+                            </Button>
+                        )}
                     </Box>
                 )}
             </React.Fragment>

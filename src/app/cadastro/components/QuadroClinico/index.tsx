@@ -154,6 +154,7 @@ const QuadroClinico: React.FC<QuadroClinicoProps> = ({ onChange, forms }) => {
             <FormControl>
                 <TextField
                     label="Tratamento"
+                    required
                     value={formData.tratamento}
                     onChange={(e) =>
                         handleInputChange('tratamento', e.target.value)

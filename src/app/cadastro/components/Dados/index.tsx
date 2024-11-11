@@ -49,9 +49,10 @@ const Dados = ({ onChange, forms }: any) => {
     return (
         <FormGroup>
             <FormControl>
-                <FormLabel>Nome</FormLabel>
                 <TextField
                     name="nome"
+                    label="Nome"
+                    required
                     value={formValues.nome}
                     onChange={handleChange}
                     variant="outlined"
@@ -59,10 +60,11 @@ const Dados = ({ onChange, forms }: any) => {
             </FormControl>
 
             <FormControl>
-                <FormLabel>Data de Nascimento</FormLabel>
                 <TextField
                     name="dataNascimento"
+                    label="Data de Nascimento"
                     type="date"
+                    required
                     value={formValues.dataNascimento}
                     onChange={handleChange}
                     variant="outlined"
@@ -71,7 +73,7 @@ const Dados = ({ onChange, forms }: any) => {
             </FormControl>
 
             <FormControl>
-                <FormLabel>Possui Convênio Médico</FormLabel>
+                <FormLabel>Possui Convênio Médico*</FormLabel>
                 <RadioGroup
                     name="convenioMedico"
                     value={formValues.convenioMedico}
@@ -92,9 +94,10 @@ const Dados = ({ onChange, forms }: any) => {
             </FormControl>
 
             <FormControl>
-                <FormLabel>RG</FormLabel>
                 <TextField
                     name="rg"
+                    label="RG"
+                    required
                     value={formatRG(formValues.rg)}
                     onChange={handleChange}
                     variant="outlined"
@@ -102,9 +105,10 @@ const Dados = ({ onChange, forms }: any) => {
             </FormControl>
 
             <FormControl>
-                <FormLabel>CPF</FormLabel>
                 <TextField
                     name="cpf"
+                    required
+                    label="CPF"
                     value={formatCPF(formValues.cpf)}
                     onChange={handleChange}
                     variant="outlined"
@@ -112,9 +116,11 @@ const Dados = ({ onChange, forms }: any) => {
             </FormControl>
 
             <FormControl>
-                <FormLabel>Cartão SUS</FormLabel>
+                <FormLabel></FormLabel>
                 <TextField
                     name="cartaoSus"
+                    label="Cartão SUS"
+                    required
                     value={formValues.cartaoSus}
                     onChange={handleChange}
                     variant="outlined"

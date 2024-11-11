@@ -327,6 +327,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
                 label="Sente dor? De 0 a 10, como classificaria?"
                 type="number"
                 value={formData.dor}
+                inputProps={{ min: 0, max: 10 }}
                 onChange={(e) => handleInputChange('dor', e.target.value)}
             />
             <TextField
