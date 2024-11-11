@@ -37,7 +37,8 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import FilterModal from '../FilterModal';
-import './tabelas.css';
+import styles from './index.module.css';
+// import './tabelas.css';
 interface Cadastro {
     id: string;
     nome_paciente: string;
@@ -389,7 +390,7 @@ const PacientesTable = () => {
 
             <TableContainer key={key}>
                 <Table>
-                    <TableHead>
+                    <TableHead className={styles.tableHeader}>
                         <TableRow>
                             {selectedColumns.map((col) => (
                                 <TableCell key={col.key}>{col.label}</TableCell>
@@ -397,7 +398,7 @@ const PacientesTable = () => {
                             <TableCell>Opçoes</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody className={styles.tableBody}>
                         {data.map((row) => (
                             <TableRow key={row.id}>
                                 {selectedColumns.map((col) => (
@@ -433,11 +434,12 @@ const PacientesTable = () => {
             />
 
             <Modal open={openSettingsModal} onClose={handleCloseSettingsModal}>
-                <Box className="customColunsModal">
+                <Box className={styles.customColumnsModal}>
                     <Typography variant="h6">Configurar Colunas</Typography>
                     {columns.map((col, index) => (
                         <Box
                             key={col.key}
+                            className={styles.customFilterItems}
                             display="flex"
                             alignItems="center"
                             justifyContent="space-between"

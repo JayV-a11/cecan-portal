@@ -15,12 +15,10 @@
 }
 
 .button {
-    height: 45px;
     background-color: #ffff !important;
     color: #2148c0 !important;
     font-size: 16px !important;
     font-weight: 400 !important;
-    line-height: 20 !important;
 }
 
 .close {
