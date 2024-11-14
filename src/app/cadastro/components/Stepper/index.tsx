@@ -399,10 +399,9 @@ export default function Stepper() {
             const form = contatoForm as any;
             if (
                 !form?.celular ||
-                !form?.numero ||
-                !form?.bairro ||
-                !form?.cidade ||
-                !form?.estado
+                !form?.telefoneContato ||
+                !form?.nomeContato ||
+                !form?.parentescoContato
             )
                 return true;
         }
