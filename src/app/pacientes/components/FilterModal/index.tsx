@@ -64,6 +64,51 @@ const FilterModal = ({ open, onClose, onApplyFilter }: any) => {
         }));
     };
 
+    const handleCleanFilters = () => {
+        setFilters({
+            status: '',
+            Paciente: {
+                nome: '',
+                rg: '',
+                cpf: '',
+                nascimento: '',
+                sus: '',
+                convenio: '',
+                estado_civil: '',
+                escolaridade: '',
+                contato: '',
+                codigo: '',
+            },
+            Endereco: {
+                cep: '',
+                rua: '',
+                numero: '',
+                cidade: '',
+                bairro: '',
+                estado: '',
+                complemento: '',
+            },
+            QuadroClinico: {
+                recidiva: '',
+                metastase: '',
+                realizou_cirurgia: '',
+                realiza_exames_prevencao: '',
+                realiza_tratamento_outras_doencas: '',
+                local_tratamento: '',
+                medico_responsavel: '',
+                data_diagnostico: '',
+            },
+            SitSocieconomica: {
+                recebe_beneficio: '',
+                aposentado: '',
+                desempregado: '',
+                moradia: '',
+                renda_per_capita: '',
+            },
+        });
+        onApplyFilter(filters);
+    };
+
     const handleApplyFilter = () => {
         onApplyFilter(filters);
         onClose();
@@ -245,6 +290,7 @@ const FilterModal = ({ open, onClose, onApplyFilter }: any) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Cancelar</Button>
+                <Button onClick={handleCleanFilters}>Limpar Filtros</Button>
                 <Button onClick={handleApplyFilter}>Aplicar Filtros</Button>
             </DialogActions>
         </Dialog>
