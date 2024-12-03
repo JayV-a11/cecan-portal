@@ -405,11 +405,13 @@ const PacientesTable = () => {
                             <TableRow key={row.id}>
                                 {selectedColumns.map((col) => (
                                     <TableCell key={col.key}>
-                                        {
-                                            row[
-                                                col.key as keyof Cadastro
-                                            ] as string
-                                        }
+                                        {typeof row[
+                                            col.key as keyof Cadastro
+                                        ] === 'boolean'
+                                            ? row[col.key] === true
+                                                ? 'Sim'
+                                                : 'Não'
+                                            : row[col.key]}
                                     </TableCell>
                                 ))}
                                 <TableCell>
