@@ -27,20 +27,28 @@ const index = () => {
         try {
             setLoading(true);
             const data = { login, password };
-            await axios
-                .post('https://cecan-api.onrender.com/login', data)
-                .then((res) =>
-                    localStorage.setItem(
-                        'USER_CREDENTIALS',
-                        JSON.stringify(res.data)
-                    )
-                )
-                .finally(() => router.push('/home'));
+            const res = await axios.post(
+                'https://cecan-api.onrender.com/login',
+                data
+            );
+
+            if (res.status > 400) {
+                throw new Error(res.data);
+            } else {
+                localStorage.setItem(
+                    'USER_CREDENTIALS',
+                    JSON.stringify(res.data)
+                );
+                router.push('/home');
+            }
             setLoading(false);
         } catch (error: any) {
-            if (error?.response?.data?.length > 0)
-                error.response?.data.map((err: any) => toast.error(err));
-            else toast.error(error?.message ?? error);
+            localStorage.removeItem('USER_CREDENTIALS');
+            if (error.length > 0) error.map((err: any) => toast.error(err));
+            else
+                toast.error(
+                    'Não foi possivel validar suas credenciais, tente novamente mais tarde.'
+                );
             setLoading(false);
         }
     };
