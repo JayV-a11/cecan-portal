@@ -115,7 +115,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
             <Typography variant="h6">Condição Socioeconômica</Typography>
 
             <FormGroup>
-                <FormLabel>Recebe algum benefício?</FormLabel>
+                <FormLabel required>Recebe algum benefício?</FormLabel>
                 <RadioGroup
                     row
                     value={formData.recebeBeneficio}
@@ -146,7 +146,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
             )}
 
             <FormGroup>
-                <FormLabel>Aposentado </FormLabel>
+                <FormLabel required>Aposentado </FormLabel>
                 <RadioGroup
                     row
                     value={formData.aposentado}
@@ -167,7 +167,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
                 </RadioGroup>
             </FormGroup>
             <FormGroup>
-                <FormLabel>Desempregado </FormLabel>
+                <FormLabel required>Desempregado </FormLabel>
                 <RadioGroup
                     row
                     value={formData.desempregado}
@@ -189,7 +189,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
             </FormGroup>
 
             <FormControl>
-                <InputLabel>Moradia</InputLabel>
+                <InputLabel required>Moradia</InputLabel>
                 <Select
                     value={formData.moradia}
                     onChange={(e) =>
@@ -315,6 +315,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
             {/* Renda Per Capita */}
             <TextField
                 label="Renda Per Capita"
+                required
                 value={formData.rendaPerCapita}
                 onChange={(e) =>
                     handleInputChange('rendaPerCapita', e.target.value)

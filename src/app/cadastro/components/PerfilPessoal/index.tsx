@@ -64,6 +64,7 @@ const PerfilPessoal: React.FC<PerfilPessoalProps> = ({ onChange, forms }) => {
             />
             <TextField
                 label="Estado Civil"
+                required
                 value={formData.estadoCivil}
                 onChange={(e) =>
                     handleInputChange('estadoCivil', e.target.value)
@@ -156,12 +157,12 @@ const PerfilPessoal: React.FC<PerfilPessoalProps> = ({ onChange, forms }) => {
                 onChange={(e) => handleInputChange('redeApoio', e.target.value)}
             />
 
-            {/* Escolaridade */}
             <Typography variant="h6">Escolaridade</Typography>
             <FormControl fullWidth>
                 <InputLabel>Escolaridade</InputLabel>
                 <Select
                     value={formData.escolaridade}
+                    required
                     onChange={(e) =>
                         handleInputChange('escolaridade', e.target.value)
                     }

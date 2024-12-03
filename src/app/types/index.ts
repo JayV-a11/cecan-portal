@@ -34,6 +34,8 @@ export type QuadroClinicoForm = {
     medicoResponsavel: string;
     localTratamentoOutraDoenca: string;
     tratamentoOutraDoenca: string;
+    examesPrevencao: string;
+    localTratamento: string;
     realizouCirurgia: string;
     metastase: string;
     recidiva: string;

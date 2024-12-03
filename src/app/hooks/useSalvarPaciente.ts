@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { PacienteData } from '../types';
 
@@ -12,31 +13,15 @@ const useSalvarPaciente = () => {
         setSuccess(false);
 
         try {
-            const userCredentials = localStorage.getItem('USER_CREDENTIALS');
-            const token = userCredentials
-                ? JSON.parse(userCredentials).token
-                : null;
-
-            if (!token) {
-                throw new Error('Token de autenticação não encontrado');
-            }
-
-            const response = await fetch(
+            const response = await axios.post(
                 'https://cecan-api.onrender.com/paciente',
                 {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify(data),
+                    data,
                 }
             );
 
-            if (!response.ok) {
-                throw new Error(
-                    `Erro ao salvar paciente: ${response.statusText}`
-                );
+            if (response.status >= 400) {
+                throw new Error(`Erro ao salvar paciente`);
             }
 
             setSuccess(true);

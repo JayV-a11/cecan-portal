@@ -13,7 +13,7 @@ import {
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import * as React from 'react';
 import { toast } from 'react-toastify';
@@ -58,7 +58,6 @@ export default function Stepper() {
     const { salvarPaciente } = useSalvarPaciente();
     const { atualizaCadastrarPaciente } = useCadastroPaciente();
     const searchParams = useSearchParams();
-    const router = useRouter();
 
     const generatePDF = async () => {
         const pdfDoc = await PDFDocument.create();
@@ -290,11 +289,11 @@ export default function Stepper() {
                 recidiva: quadroClinico?.recidiva === 'sim',
                 metastase: quadroClinico?.metastase === 'sim',
                 realizou_cirurgia: quadroClinico?.realizouCirurgia === 'sim',
-                realiza_exames_prevencao: quadroClinico?.recidiva === 'sim',
+                realiza_exames_prevencao:
+                    quadroClinico?.examesPrevencao === 'sim',
                 realiza_tratamento_outras_doencas:
                     quadroClinico?.tratamentoOutraDoenca === 'sim',
-                local_tratamento:
-                    quadroClinico?.localTratamentoOutraDoenca ?? '-',
+                local_tratamento: quadroClinico?.localTratamento ?? '-',
                 medico_responsavel: quadroClinico?.medicoResponsavel ?? '-',
                 data_diagnostico: quadroClinico?.dataDiagnostico
                     ? new Date(quadroClinico?.dataDiagnostico)
@@ -423,6 +422,10 @@ export default function Stepper() {
             )
                 return true;
         }
+        if (activeStep === 4) {
+            const form = perfilPessoalForm as any;
+            if (!form?.estadoCivil || !form?.escolaridade) return true;
+        }
         if (activeStep === 5) {
             const form = quadroClinico as any;
             if (
@@ -431,6 +434,18 @@ export default function Stepper() {
                 !form?.tratamento ||
                 !form?.medicoResponsavel ||
                 !form?.localTratamento
+            )
+                return true;
+        }
+
+        if (activeStep === 6) {
+            const form = condicao as any;
+            if (
+                !form?.recebeBeneficio ||
+                !form?.aposentado ||
+                !form?.desempregado ||
+                !form?.moradia ||
+                !form?.rendaPerCapita
             )
                 return true;
         }
