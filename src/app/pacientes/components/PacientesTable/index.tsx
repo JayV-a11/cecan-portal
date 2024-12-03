@@ -40,6 +40,7 @@ import FilterModal from '../FilterModal';
 import styles from './index.module.css';
 // import './tabelas.css';
 interface Cadastro {
+    total_rows: number;
     id: string;
     nome_paciente: string;
     status: string;
@@ -103,7 +104,7 @@ const PacientesTable = () => {
                     },
                 }
             );
-            console.log(response);
+
             if (response.status === 401) {
                 localStorage.removeItem('USER_CREDENTIALS');
                 window.location.href = '/';
@@ -421,7 +422,7 @@ const PacientesTable = () => {
             </TableContainer>
             <TablePagination
                 component="div"
-                count={data.length}
+                count={Number(data[0].total_rows ?? 0)}
                 page={page}
                 onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
