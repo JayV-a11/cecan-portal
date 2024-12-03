@@ -27,7 +27,7 @@ const Contato: React.FC<ContatoProps> = ({ onChange, forms }) => {
 
     const telefoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
 
-    const handleCelularChange = (e: any) => {
+    const handleCelularChange = (e: any, inputName: string) => {
         let inputValue = e.target.value.replace(/\D/g, '');
 
         if (inputValue.length > 2) {
@@ -36,7 +36,7 @@ const Contato: React.FC<ContatoProps> = ({ onChange, forms }) => {
         if (inputValue.length > 10) {
             inputValue = `${inputValue.slice(0, 10)}-${inputValue.slice(10, 14)}`;
         }
-        handleInputChange('celular', inputValue);
+        handleInputChange(inputName, inputValue);
     };
 
     const handleInputChange = (field: string, value: string) => {
@@ -57,25 +57,21 @@ const Contato: React.FC<ContatoProps> = ({ onChange, forms }) => {
             <TextField
                 label="Telefone Fixo (opcional)"
                 value={formData.telefoneFixo}
-                onChange={(e) =>
-                    handleInputChange('telefoneFixo', e.target.value)
-                }
+                onChange={(e) => handleCelularChange(e, 'telefoneFixo')}
                 inputProps={{ pattern: telefoneRegex.source }}
             />
             <TextField
                 label="Celular"
                 required
                 value={formData.celular}
-                onChange={handleCelularChange}
+                onChange={(e) => handleCelularChange(e, 'celular')}
                 inputProps={{ pattern: telefoneRegex.source }}
             />
             <Typography variant="h6">Telefone Contato</Typography>
             <TextField
                 label="Telefone Contato"
                 value={formData.telefoneContato}
-                onChange={(e) =>
-                    handleInputChange('telefoneContato', e.target.value)
-                }
+                onChange={(e) => handleCelularChange(e, 'telefoneContato')}
                 inputProps={{ pattern: telefoneRegex.source }}
                 required
             />

@@ -66,6 +66,24 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
               }
     );
 
+    const handleCurrencyChange = (e: any, inputName: string, index?: any) => {
+        let numericValue = e.target.value.replace(/[^\d]/g, '');
+        if (numericValue) {
+            const formattedValue = (Number(numericValue) / 100).toLocaleString(
+                'pt-BR',
+                {
+                    style: 'currency',
+                    currency: 'BRL',
+                }
+            );
+            if (index) {
+                handleInputChange(inputName, formattedValue, index);
+            } else handleInputChange(inputName, formattedValue);
+        } else {
+            handleInputChange(inputName, '');
+        }
+    };
+
     const handleInputChange = (
         field: string,
         value: string | number,
@@ -292,11 +310,7 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
                             label="Renda"
                             value={familiar.renda}
                             onChange={(e) =>
-                                handleInputChange(
-                                    'renda',
-                                    e.target.value,
-                                    index
-                                )
+                                handleCurrencyChange(e, 'renda', index)
                             }
                         />
                         {formData.composicaoFamiliar.length > 1 && (
@@ -317,9 +331,8 @@ const CondicaoSocioeconomica: React.FC<CondicaoSocioeconomicaProps> = ({
                 label="Renda Per Capita"
                 required
                 value={formData.rendaPerCapita}
-                onChange={(e) =>
-                    handleInputChange('rendaPerCapita', e.target.value)
-                }
+                onChange={(e) => handleCurrencyChange(e, 'rendaPerCapita')}
+                inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
             />
 
             {/* Biopsico */}

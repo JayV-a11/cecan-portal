@@ -40,6 +40,72 @@ const steps = [
     'Finalizar',
 ];
 
+const keyLabels: Record<string, string> = {
+    religiao: 'Religião',
+    estadoCivil: 'Estado civil',
+    filhos: 'Possui filhos',
+    quantidadeFilhos: 'Quantidade de filhos',
+    resideCom: 'Reside com',
+    relacionamento: 'Relacionamento',
+    vidaSexual: 'Vida sexual',
+    satisfacaoCasamento: 'Satisfação no casamento',
+    redeApoio: 'Rede de apoio',
+    escolaridade: 'Escolaridade',
+    estudaAtualmente: 'Estuda atualmente',
+    pretendeEstudar: 'Pretende estudar',
+    trabalhaFora: 'Trabalha fora',
+    profissao: 'Profissão',
+    satisfacaoProfissao: 'Satisfação com a profissão',
+    satisfacaoTrabalho: 'Satisfação no trabalho',
+    praticaAtividadesFisicas: 'Pratica atividades físicas',
+    atividadesFisicas: 'Atividades físicas',
+    possuiHobbies: 'Possui hobbies',
+    hobbies: 'Hobbies',
+    possuiVicios: 'Possui vícios',
+    quaisVicios: 'Quais vícios',
+    frequenciaVicios: 'Frequência dos vícios',
+    diagnostico: 'Diagnóstico',
+    dataDiagnostico: 'Data do diagnóstico',
+    recidiva: 'Recidiva',
+    metastase: 'Metástase',
+    realizouCirurgia: 'Realizou cirurgia',
+    qualCirurgia: 'Qual cirurgia',
+    tratamento: 'Tratamento',
+    medicoResponsavel: 'Médico responsável',
+    localTratamento: 'Local do tratamento',
+    examesPrevencao: 'Realizou exames de prevenção',
+    tratamentoOutraDoenca: 'Realizou tratamento para outra doença',
+    quaisTratamentoOutraDoenca: 'Quais tratamentos para outra doença',
+    localTratamentoOutraDoenca: 'Local do tratamento para outra doença',
+    fazUsoMedicamentos: 'Faz uso de medicamentos',
+    quaisMedicamentos: 'Quais medicamentos',
+    medicamentosRedePublica: 'Medicamentos da rede pública',
+    sono: 'Sono',
+    apetite: 'Apetite',
+    procurouInformacoes: 'Procurou informações',
+    comoObteveInformacoes: 'Como obteve informações',
+    quemIndicou: 'Quem indicou',
+    recebeBeneficio: 'Recebe benefício',
+    qualBeneficio: 'Qual benefício',
+    aposentado: 'Aposentado',
+    desempregado: 'Desempregado',
+    moradia: 'Moradia',
+    apoioOutroLocal: 'Apoio em outro local',
+    qualApoio: 'Qual apoio',
+    vinculo: 'Vínculo',
+    rendaPerCapita: 'Renda per capita',
+    dor: 'Dor',
+    visaoSobreCancer: 'Visão sobre o câncer',
+    impactosDoenca: 'Impactos da doença',
+    mudouVida: 'Mudanças na vida',
+    projetosFuturos: 'Projetos futuros',
+    nteresseAtividades: 'Interesse em atividades',
+    orientadoGratuidade: 'Orientado sobre gratuidade',
+    observacoes: 'Observações',
+    sobreTratamento: 'Sobre o tratamento',
+    modalidadeAtendimento: 'Modalidade de atendimento',
+};
+
 export default function Stepper() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [dadosForm, setDadosForm] = React.useState<DadosForm>();
@@ -199,7 +265,8 @@ export default function Stepper() {
                                 );
                             });
                     } else {
-                        addText(`${key}: ${value}`);
+                        const label = keyLabels[key] || key;
+                        addText(`${label}: ${value ?? 'N/A'}`);
                     }
                 });
 

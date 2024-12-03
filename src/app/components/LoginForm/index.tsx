@@ -45,10 +45,7 @@ const index = () => {
         } catch (error: any) {
             localStorage.removeItem('USER_CREDENTIALS');
             if (error.length > 0) error.map((err: any) => toast.error(err));
-            else
-                toast.error(
-                    'Não foi possivel validar suas credenciais, tente novamente mais tarde.'
-                );
+            else toast.error('Usuário ou senha invalidos');
             setLoading(false);
         }
     };

@@ -69,7 +69,7 @@ const PacientesTable = () => {
 
     const [data, setData] = useState<Cadastro[]>([]);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     const [openFilterModal, setOpenFilterModal] = useState(false);
     const [openCodeModal, setOpenCodeModal] = useState(false);
     const [selectedCode, setSelectedCode] = useState<string | null>(null);
