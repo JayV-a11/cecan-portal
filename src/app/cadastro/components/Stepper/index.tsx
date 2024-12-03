@@ -348,7 +348,7 @@ export default function Stepper() {
             }
         );
 
-        setTimeout(() => window.location.reload(), 2000);
+        // setTimeout(() => window.location.reload(), 2000);
     };
 
     const downloadDocument = async () => {
