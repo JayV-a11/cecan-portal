@@ -314,23 +314,41 @@ export default function Stepper() {
             setInvalidId(true);
             return;
         }
-        await salvarPaciente(data as any).then(async () => {
-            await atualizaCadastrarPaciente(search, 3).then(async () =>
-                toast.promise(
-                    async () => {
-                        await generatePDF();
-                    },
-                    {
-                        error: 'Houve um erro ao salvar seus dados, tente novamente mais tarde',
-                        success: 'Dados salvos com sucesso!',
-                        pending:
-                            'Seu documento está sendo gerado, aguarde um momento',
-                    }
-                )
-            );
-        });
 
-        // router.refresh();
+        await toast.promise(
+            async () => {
+                await salvarPaciente(data as any);
+            },
+            {
+                error: 'Houve um erro ao salvar seus dados, tente novamente mais tarde',
+                success: 'Dados salvos com sucesso!',
+                pending: 'Salvando dados do paciente, aguarde um momento',
+            }
+        );
+
+        await toast.promise(
+            async () => {
+                await atualizaCadastrarPaciente(search, 3);
+            },
+            {
+                error: 'Houve um erro ao salvar seus dados, tente novamente mais tarde',
+                success: 'Cadastro atualizado com sucesso!',
+                pending: 'Atualizando cadastro, aguarde um momento',
+            }
+        );
+
+        await toast.promise(
+            async () => {
+                await generatePDF();
+            },
+            {
+                error: 'Houve um erro ao salvar seus dados, tente novamente mais tarde',
+                success: 'Documento gerado com sucesso!',
+                pending: 'Seu documento está sendo gerado, aguarde um momento',
+            }
+        );
+
+        setTimeout(() => window.location.reload(), 2000);
     };
 
     const downloadDocument = async () => {
