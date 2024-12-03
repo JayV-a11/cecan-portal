@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import logo from '../../../../public/images/logo.svg';
 import style from './index.module.css';
@@ -49,6 +49,11 @@ const index = () => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        const credentials = localStorage.getItem('USER_CREDENTIALS');
+        if (!credentials) router.push('/');
+    }, [router]);
 
     return (
         <Box className={style.box} component="section">
