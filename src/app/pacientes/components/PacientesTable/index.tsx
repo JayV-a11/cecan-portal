@@ -250,7 +250,7 @@ const PacientesTable = () => {
         setOpenFilterModal(false);
     };
 
-    const handleInactivate = () => {
+    const handleInactivate = async () => {
         const id = showInactvateConfirmation.id as any;
         toast.promise(
             async () => {
@@ -266,7 +266,7 @@ const PacientesTable = () => {
             show: false,
             id: null,
         });
-        fetchData();
+        await fetchData();
     };
 
     const handleShowInactivateModal = (id: any) => {
@@ -340,12 +340,24 @@ const PacientesTable = () => {
     };
 
     const displayRow = (col: any) => {
-        if (typeof col === 'boolean')
-            if (col === true) return 'Sim';
-            else return 'Não';
-        else if (col === null || col === undefined) {
+        if (typeof col === 'boolean') {
+            return col ? 'Sim' : 'Não';
+        } else if (col === null || col === undefined) {
             return 'Resposta Pendente';
-        } else return col;
+        } else if (col instanceof Date) {
+            const day = col.getDate().toString().padStart(2, '0');
+            const month = (col.getMonth() + 1).toString().padStart(2, '0'); // Meses começam em 0
+            const year = col.getFullYear();
+            return `${day}/${month}/${year}`;
+        } else if (!isNaN(Date.parse(col))) {
+            const date = new Date(col);
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        } else {
+            return col;
+        }
     };
 
     return (
