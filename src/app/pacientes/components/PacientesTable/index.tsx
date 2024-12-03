@@ -336,6 +336,13 @@ const PacientesTable = () => {
         );
     };
 
+    const displayRow = (col: any) => {
+        if (typeof col === 'boolean')
+            if (col === true) return 'Sim';
+            else return 'Não';
+        else return col;
+    };
+
     return (
         <Box>
             <header
@@ -405,13 +412,9 @@ const PacientesTable = () => {
                             <TableRow key={row.id}>
                                 {selectedColumns.map((col) => (
                                     <TableCell key={col.key}>
-                                        {typeof row[
-                                            col.key as keyof Cadastro
-                                        ] === 'boolean'
-                                            ? row[col.key] === true
-                                                ? 'Sim'
-                                                : 'Não'
-                                            : row[col.key]}
+                                        {displayRow(
+                                            row[col.key as keyof Cadastro]
+                                        )}
                                     </TableCell>
                                 ))}
                                 <TableCell>
