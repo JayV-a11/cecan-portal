@@ -85,8 +85,14 @@ const FilterModal = ({ open, onClose, onApplyFilter }: any) => {
                     select
                 >
                     <MenuItem value="">Não selecionado</MenuItem>
-                    <MenuItem value="ativo">Ativo</MenuItem>
-                    <MenuItem value="inativo">Inativo</MenuItem>
+                    <MenuItem value="AGUARDANDO PREENCHIMENTO">
+                        AGUARDANDO PREENCHIMENTO
+                    </MenuItem>
+                    <MenuItem value="AGUARDANDO ASSINATURA">
+                        AGUARDANDO ASSINATURA
+                    </MenuItem>
+                    <MenuItem value="ASSINADO">ASSINADO</MenuItem>
+                    <MenuItem value="ASSINADO">ENCERRADO</MenuItem>
                 </TextField>
 
                 {/* Paciente Filters */}
