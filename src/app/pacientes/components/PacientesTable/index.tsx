@@ -340,7 +340,9 @@ const PacientesTable = () => {
         if (typeof col === 'boolean')
             if (col === true) return 'Sim';
             else return 'Não';
-        else return col;
+        else if (col === null || col === undefined) {
+            return 'Resposta Pendente';
+        } else return col;
     };
 
     return (

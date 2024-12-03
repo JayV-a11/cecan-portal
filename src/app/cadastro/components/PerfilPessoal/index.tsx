@@ -133,6 +133,7 @@ const PerfilPessoal: React.FC<PerfilPessoalProps> = ({ onChange, forms }) => {
                         handleInputChange('vidaSexual', e.target.value)
                     }
                 >
+                    <MenuItem value="naoAplica">Não se aplica</MenuItem>
                     <MenuItem value="ativa">Ativa</MenuItem>
                     <MenuItem value="abstinencia">Abstinência</MenuItem>
                 </Select>
