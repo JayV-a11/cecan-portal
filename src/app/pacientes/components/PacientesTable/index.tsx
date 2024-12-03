@@ -103,8 +103,9 @@ const PacientesTable = () => {
                     },
                 }
             );
-
+            console.log(response);
             if (response.status === 401) {
+                localStorage.removeItem('USER_CREDENTIALS');
                 window.location.href = '/';
             } else {
                 const result = response.status === 200 ? response.data : [];
@@ -420,7 +421,7 @@ const PacientesTable = () => {
             </TableContainer>
             <TablePagination
                 component="div"
-                count={1000}
+                count={data.length}
                 page={page}
                 onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
