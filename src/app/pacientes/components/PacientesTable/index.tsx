@@ -262,7 +262,10 @@ const PacientesTable = () => {
                 pending: 'Inativando paciente. Por favor, aguarde',
             }
         );
-        setShowInactivationConfirmation({ show: true, id });
+        setShowInactivationConfirmation({
+            show: false,
+            id: null,
+        });
         fetchData();
     };
 
@@ -556,10 +559,10 @@ const PacientesTable = () => {
                             })
                         }
                     >
-                        Disagree
+                        Cancelar
                     </Button>
                     <Button onClick={handleInactivate} autoFocus>
-                        Agree
+                        Inativar
                     </Button>
                 </DialogActions>
             </Dialog>
