@@ -420,7 +420,7 @@ const PacientesTable = () => {
             </TableContainer>
             <TablePagination
                 component="div"
-                count={data.length}
+                count={1000}
                 page={page}
                 onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
